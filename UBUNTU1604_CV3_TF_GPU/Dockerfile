@@ -60,6 +60,10 @@ RUN apt-get update \
         libx264-dev \
         libgtk-3-dev  \
     && apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        openssh-server \
+        cmake \
+        git \
         libboost-all-dev \
         libgflags-dev \
         libgoogle-glog-dev \
@@ -155,7 +159,6 @@ RUN pip --no-cache-dir install \
     http://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-"${TENSORFLOW_VER}"-cp27-none-linux_x86_64.whl
 
 
-
 # install desktop environment
 #RUN sudo add-apt-repository -y ppa:lubuntu-dev/lubuntu-daily && \
 RUN apt-get install --reinstall ca-certificates && \ 
@@ -164,6 +167,7 @@ RUN apt-get install --reinstall ca-certificates && \
     apt-get install mate -y && \
     apt-get dist-upgrade
 #    sudo apt-get install lxqt-metapackage lxqt-panel openbox -y
+RUN pip install tensorflow==1.6.0
 
 # install lsusb
 RUN apt-get install usbutils
