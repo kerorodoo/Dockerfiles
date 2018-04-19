@@ -149,14 +149,15 @@ RUN apt-get install cuda-command-line-tools-8-0 \
     && export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}/usr/local/cuda/extras/CUPTI/lib64
 
 # Clone TensorFlow repository and checkout version
-ENV TENSORFLOW_VER "1.6.0"
+ENV TENSORFLOW_VER "1.4.0"
 #RUN git clone https://github.com/tensorflow/tensorflow \
 #    && cd tensorflow \ 
 #    && git checkout "${TENSORFLOW_VER}"
 #RUN pip --no-cache-dir install \
 #    http://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-"${TENSORFLOW_VER}"-cp27-none-linux_x86_64.whl
-RUN pip --no-cache-dir install \
-    http://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-"${TENSORFLOW_VER}"-cp27-none-linux_x86_64.whl
+RUN wget -c http://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-"${TENSORFLOW_VER}"-cp27-none-linux_x86_64.whl \
+    && pip --no-cache-dir install tensorflow_gpu-"${TENSORFLOW_VER}"-cp27-none-linux_x86_64.whl
+#RUN pip install --upgrade tensorflow-gpu==1.6.0
 
 
 # install desktop environment
@@ -167,7 +168,7 @@ RUN apt-get install --reinstall ca-certificates && \
     apt-get install mate -y && \
     apt-get dist-upgrade
 #    sudo apt-get install lxqt-metapackage lxqt-panel openbox -y
-RUN pip install tensorflow==1.6.0
+
 
 # install lsusb
 RUN apt-get install usbutils
