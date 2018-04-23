@@ -175,6 +175,9 @@ RUN apt-get install usbutils
 
 RUN rm -rf /var/lib/apt/lists/*
 
+# link GLX driver
+RUN ln -s /usr/local/nvidia/lib64/libGLX_indirect.so.0 /usr/lib/libGLX_indirect.so.0
+
 # Set SSH Config
 RUN mkdir -p /var/run/sshd
 

@@ -195,6 +195,9 @@ RUN apt-get install usbutils
 
 RUN rm -rf /var/lib/apt/lists/*
 
+# link GLX driver
+RUN ln -s /usr/local/nvidia/lib64/libGLX_indirect.so.0 /usr/lib/libGLX_indirect.so.0
+
 # create symbolic link and alias
 RUN rm /usr/bin/python3 &&\
     ln -s /usr/bin/python3.6 /usr/bin/python3 &&\
