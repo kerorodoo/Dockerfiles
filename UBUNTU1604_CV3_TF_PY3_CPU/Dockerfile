@@ -159,7 +159,7 @@ RUN python3.6 -m pip install --upgrade pip \
     && wget -c https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-"${TENSORFLOW_VER}"-cp"${PYTHON_VER}"-cp"${PYTHON_VER}"m-linux_x86_64.whl \
     && python3.6 -m pip --no-cache-dir install tensorflow-"${TENSORFLOW_VER}"-cp"${PYTHON_VER}"-cp"${PYTHON_VER}"m-linux_x86_64.whl
 #RUN wget -c https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-"${TENSORFLOW_VER}"-cp"${PYTHON_VER}"-cp"${PYTHON_VER}"m-linux_x86_64.whl \
-#    && pip3 --no-cache-dir install tensorflow_gpu-"${TENSORFLOW_VER}"-cp"${PYTHON_VER}"-cp"${PYTHON_VER}"m-linux_x86_64.whl
+#    && python3.6 -m pip --no-cache-dir install tensorflow_gpu-"${TENSORFLOW_VER}"-cp"${PYTHON_VER}"-cp"${PYTHON_VER}"m-linux_x86_64.whl
 
 # install desktop environment
 #RUN sudo add-apt-repository -y ppa:lubuntu-dev/lubuntu-daily && \
