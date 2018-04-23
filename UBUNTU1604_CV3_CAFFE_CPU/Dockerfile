@@ -39,7 +39,9 @@ RUN apt-get update \
     libtiff5-dev \
     libxvidcore-dev \
     libx264-dev \
-    libgtk-3-dev  
+    libgtk-3-dev \
+    && apt-get install -y libgtkglext1-dev \
+    libvtk6-dev
 
 # Install CAFFE dependency lib
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -93,10 +95,18 @@ RUN wget https://github.com/opencv/opencv/archive/"${OPENCV_VER}".tar.gz \
        -DWITH_JPEG=ON -DBUILD_JPEG=ON -DWITH_PNG=ON -DBUILD_PNG=ON \
        -DENABLE_FAST_MATH=ON -DCUDA_FAST_MATH=ON \
        -DWITH_CUBLAS=ON \
+       -DWITH_GTK=ON .. \
+       -DWITH_OPENGL=ON \
+       -DFORCE_VTK=ON \
+       -DWITH_TBB=ON \
+       -DWITH_GDAL=ON \
+       -DWITH_XINE=ON \
+       -DBUILD_EXAMPLES=OFF \
+       -DENABLE_PRECOMPILED_HEADERS=OFF \
+       -DBUILD_opencv_ts=OFF \
        -DBUILD_SHARED_LIBS=ON \
        -DBUILD_NEW_PYTHON_SUPPORT=ON \
        -DPYTHON_EXECUTABLE=/usr/bin/python \
-       -DWITH_GTK=ON .. \
     && make -j"$(nproc)" && make install && cd ../.. && rm -r opencv-"${OPENCV_VER}" && rm "${OPENCV_VER}".tar.gz
 
 
