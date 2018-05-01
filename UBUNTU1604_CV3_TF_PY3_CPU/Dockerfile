@@ -133,7 +133,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa \
           python3-pip \
           python3.6-dev \
           python3-wheel \
-        && pip3 install numpy \
+        && python3.6 -m pip install numpy \
           scikit-image \
           Pillow \
           h5py \
@@ -143,7 +143,7 @@ RUN add-apt-repository ppa:deadsnakes/ppa \
           pandas \
           scipy \
           sklearn \
-          matplotlib
+          decorator
 
 
 #  upgrade h5py
