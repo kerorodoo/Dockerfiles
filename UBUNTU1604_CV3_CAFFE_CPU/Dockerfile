@@ -1,6 +1,11 @@
 FROM ubuntu:16.04
 
 #Version v1.0
+#Changelog:
+#	1. ISSUE: AttributeError: 'module' object has no attribute 'SSL_ST_INIT'
+#	   1.1. install pyOpenSSL==16.2.0
+
+
 MAINTAINER CHIN SUN <nhoj62003@gmail.com>
 
 
@@ -118,6 +123,7 @@ WORKDIR $CAFFE_ROOT
 #RUN git clone -b ${CAFFE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
 RUN git clone https://github.com/BVLC/caffe.git . && \
     pip install --upgrade pip && \
+    pip install  pyOpenSSL==16.2.0 && \
     cd python && for req in $(cat requirements.txt) pydot; do pip install $req; done && cd .. && \
     cp Makefile.config.example Makefile.config && \
     sed -i 's/# USE_OPENCV := 0/USE_OPENCV := 1/g' Makefile.config && \
